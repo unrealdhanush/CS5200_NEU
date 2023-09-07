@@ -1,0 +1,7 @@
+"0","```r
+# Create a user-defined index called \"TitleIndex\" on the column `TITLE` in the table `FILM`
+query <- \"CREATE INDEX TitleIndex ON film (title);\"
+dbExecute(conn, query)
+```"
+"1","[1] 0
+"

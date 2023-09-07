@@ -1,0 +1,5 @@
+"0","```sql
+create table if not exists airports(aid INTEGER NOT NULL PRIMARY KEY,
+                                    airportState TEXT,
+                                    airportCode TEXT)
+```"

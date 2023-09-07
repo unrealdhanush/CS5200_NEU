@@ -1,0 +1,88 @@
+---
+title: "Data Analysis"
+author: Balakrishna,D
+date: Summer Full 2023
+output: html_notebook
+---
+
+### Establishing SQLite and MySQL Connections
+```{r SQLite and RMySQL Connection}
+library(RSQLite)
+
+sqlite_con <- dbConnect(RSQLite::SQLite(), "pharma.sqlite")
+library(RMySQL)
+
+db_name_fh <- "sql9639719"
+db_user_fh <- "sql9639719"
+db_host_fh <- "sql9.freemysqlhosting.net"
+db_pwd_fh <- "3ULuvSERWS"
+db_port_fh <- 3306
+
+mysql_con <-  dbConnect(RMySQL::MySQL(), user = db_user_fh, password = db_pwd_fh, 
+                   dbname = db_name_fh, host = db_host_fh, port = db_port_fh)
+```
+
+### Analytical Query I
+For Query I, we firstly extract the needed data from the fact tables that were created in the previous part of the assignment.
+Let us select the top 5 reps from the rep_facts table ordering it by the sales each person made that particular year. 
+
+```{r Analytical Query I}
+query <- "
+SELECT firstName, lastName,
+  y2020_sold, 
+  y2021_sold,
+  y2022_sold
+FROM rep_facts
+ORDER BY y2020_sold DESC
+LIMIT 5;"
+
+top_reps <- dbGetQuery(mysql_con, query)
+
+print(knitr::kable(top_reps))
+```
+So we can see the names of the top 5 reps in the year 2020. As the data only had records from the year 2020, we can only observe values in the column of that particular year. 
+
+### Analytical Query II
+For the second query we can see the total sales by using the SUM function in SQL. We also create a second table for visualization. 
+```{r Analytical Query II}
+total <- dbGetQuery(mysql_con, "
+  SELECT 
+    SUM(y2020_sold) AS y2020, 
+    SUM(y2021_sold) AS y2021,
+    SUM(y2022_sold) AS y2022
+  FROM rep_facts
+")
+print(total)
+
+years <- dbGetQuery(mysql_con, "
+  SELECT 
+    2020 AS year, SUM(y2020_sold) AS total  
+  FROM rep_facts
+  
+  UNION
+  
+  SELECT
+    2021 AS year, SUM(y2021_sold) AS total
+  FROM rep_facts
+
+  UNION
+
+  SELECT
+    2022 AS year, SUM(y2022_sold) AS total
+  FROM rep_facts
+")
+```
+
+In this part, we visualize the data that we computed above in the form of a Line Plot, now as previously specified the data only contains values for the year 2020, so we would get a linear plot and then a zero line for 2021 and 2022.
+```{r Visulaizing results of Analytical Query II}
+library(ggplot2)
+ggplot(years, aes(x = year, y = total)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::comma) + 
+  labs(
+    title = "Total Sales Per Year",
+    x = "Year",
+    y = "Total Sales"
+  )
+```
+We can see that a little over 4 Million products were sold in the year 2020. 

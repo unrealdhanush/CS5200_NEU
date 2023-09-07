@@ -1,0 +1,9 @@
+"2","Error in .local(conn, statement, ...) : 
+  could not run statement: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELIMITER //
+
+CREATE PROCEDURE AddStrike(
+   airportState TEXT,
+   dates DATE,
+ ' at line 1
+"
+"2","Failed to execute SQL chunk"

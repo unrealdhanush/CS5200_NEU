@@ -1,0 +1,9 @@
+"0","df <- dbGetQuery(dbcon,""SELECT g.GenreId, g.Name, t.UnitPrice FROM genres g, tracks t WHERE g.GenreId=t.GenreId"")"
+"0","df2 <- dbGetQuery(dbcon,""SELECT t.UnitPrice FROM tracks t"")"
+"2","Error in exists(cacheKey, where = .rs.WorkingDataEnv, inherits = FALSE) : 
+  invalid first argument
+"
+"2","Error in assign(cacheKey, frame, .rs.CachedDataEnv) : 
+  attempt to use zero-length variable name
+"
+"0","print(df2)"

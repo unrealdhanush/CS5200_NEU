@@ -1,0 +1,3 @@
+"0","```sql
+select f.airline, count(*) as num_incidents from strikes s left join flights f on s.fid = f.fid group by f.airline having count(*) > (select avg(num_incidents) from (select count(*) as num_incidents from strikes s left join flights f on s.fid = f.fid group by f.airline) as subquery);
+```"

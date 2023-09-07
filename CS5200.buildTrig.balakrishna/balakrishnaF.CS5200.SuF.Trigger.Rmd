@@ -1,0 +1,107 @@
+---
+title: "Build Triggers"
+output: html_notebook
+author: Balakrishna, Dhanush
+date: Summer Full 2023
+---
+
+Calling the Library and establishing connection to the given database
+```{r}
+library(RSQLite)
+
+dbfile = "/Users/dhanush/Northeastern/2023summer/CS5200/CS5200.buildTrig.balakrishna/MediaDB.db"
+
+dbcon <- dbConnect(RSQLite::SQLite(), dbfile)
+```
+
+I added a DROP statement only for testing convenience
+
+```{sql connection=dbcon}
+ALTER TABLE invoices
+DROP COLUMN totalinv;
+```
+
+Question 1:
+As there is already a column named 'total' in the 'invoices' table, I created a seperate column called 'totalinv' which shows how the triggers can work. 
+The newly created column is a NUMERIC type column
+
+```{sql connection=dbcon}
+ALTER TABLE invoices 
+ADD COLUMN totalinv NUMERIC NOT NULL DEFAULT 0 CHECK(totalinv>=0);
+
+```
+
+Viewing the 'invoices' table to check if the new column has been added.
+
+```{sql connection=dbcon}
+SELECT * FROM invoices;
+
+```
+
+Trigger(s) Creation:
+The First Trigger(a.k.a the 'AFTER INSERT' Trigger) updates the value in the 'totalinv' column to the sum of the prices of the tracks added as part of the new invoice entry
+
+```{sql connection=dbcon}
+CREATE TRIGGER IF NOT EXISTS calcTrigger
+AFTER INSERT ON invoices
+FOR EACH ROW
+BEGIN
+UPDATE invoices SET totalinv=(SELECT SUM(UnitPrice*Quantity) FROM invoice_items WHERE InvoiceId = NEW.InvoiceId)
+WHERE InvoiceId=NEW.InvoiceId;
+END
+```
+
+The Second Trigger(a.k.a the 'AFTER UPDATE' Trigger) updates the value in the 'totalinv' column to the sum of the prices of the tracks based ib any modification in the invoices table
+
+```{sql connection=dbcon}
+CREATE TRIGGER IF NOT EXISTS recalcTrigU
+AFTER UPDATE ON invoice_items 
+FOR EACH ROW
+BEGIN
+UPDATE invoices SET totalinv=(SELECT SUM(UnitPrice*Quantity) FROM invoice_items WHERE InvoiceId = NEW.InvoiceId)
+WHERE InvoiceId=NEW.InvoiceId;
+END
+```
+
+The Third Trigger(a.k.a the 'AFTER DELETE' Trigger) updates the 'totalinv' column in case of deletion of any invoice entries
+
+```{sql connection=dbcon}
+CREATE TRIGGER IF NOT EXISTS recalcTrigD
+AFTER DELETE ON invoice_items 
+FOR EACH ROW
+BEGIN
+UPDATE invoices SET totalinv=(SELECT SUM(UnitPrice*Quantity) FROM invoice_items WHERE InvoiceId = OLD.InvoiceId)
+WHERE InvoiceId=OLD.InvoiceId;
+END
+```
+
+Table Info was viewed to aid Value Insertion 
+
+```{sql connection=dbcon}
+PRAGMA table_info(invoice_items);
+```
+
+Value Insertion
+
+```{sql connection=dbcon}
+INSERT INTO invoice_items (InvoiceId, TrackId, UnitPrice, Quantity) VALUES (414, 2581, 0.99, 1), (414, 2574, 0.99, 3);
+```
+
+Table Info was viewed to aid Value Insertion 
+
+```{sql connection=dbcon}
+PRAGMA table_info(invoices);
+```
+
+Value Insertion
+
+```{sql connection=dbcon}
+INSERT INTO invoices(InvoiceId, CustomerId, InvoiceDate, Total) VALUES (414, 24, "2013-12-27", 0.00);
+```
+
+The results of the table can niw be viewed here.
+
+```{sql connection=dbcon}
+SELECT * FROM invoices;
+```
+

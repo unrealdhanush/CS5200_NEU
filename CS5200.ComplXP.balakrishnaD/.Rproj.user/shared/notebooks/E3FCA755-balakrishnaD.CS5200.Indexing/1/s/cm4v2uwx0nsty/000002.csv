@@ -1,0 +1,7 @@
+"0","```r
+library(DBI)
+library(RSQLite)
+
+# Connect to the SQLite database
+conn <- dbConnect(RSQLite::SQLite(), \"sakila.db\")
+```"

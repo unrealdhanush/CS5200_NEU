@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE grants [
+  <!ELEMENT grants (Researcher+,Grants+,Link*)>
+  <!ELEMENT Researcher (name,affiliation,Grants)>
+  <!ATTLIST Researcher rid ID #REQUIRED>
+  <!ELEMENT name (#PCDATA)>
+  <!ELEMENT affiliation (#PCDATA)>
+  <!ELEMENT Grants (gdate,type)>
+  <!ATTLIST Grants gid ID #REQUIRED>
+  <!ELEMENT gdate (#PCDATA)>
+  <!ELEMENT type (#PCDATA)>
+  <!ELEMENT Link EMPTY>
+  <!ATTLIST Link rid IDREF #REQUIRED>
+  <!ATTLIST Link gid IDREF #REQUIRED>
+]>
+<grants>
+   <!--Researcher Entries-->
+   <Researcher rid="R1">
+      <name>John Doe</name>
+      <affiliation>XYZ University</affiliation>
+   </Researcher>
+   <Researcher rid="R2">
+      <name>Jane Smith</name>
+      <affiliation>ABC College</affiliation>
+   </Researcher>
+   <Researcher rid="R3">
+      <name>Michael Johnson</name>
+      <affiliation>LMN Institute</affiliation>
+   </Researcher>
+   <!--Grants Entries-->
+   <Grants gid="G1">
+      <gdate>2023-06-15</gdate>
+      <type>industry</type>
+   </Grants>
+   <Grants gid="G2">
+      <gdate>2023-07-10</gdate>
+      <type>government</type>
+   </Grants>
+   <Grants gid="G3">
+      <gdate>2023-08-20</gdate>
+      <type>industry</type>
+   </Grants>
+   <Grants gid="G4">
+      <gdate>2023-09-05</gdate>
+      <type>industry</type>
+   </Grants>
+   <Grants gid="G5">
+      <gdate>2023-09-15</gdate>
+      <type>government</type>
+   </Grants>
+   <Grants gid="G6">
+      <gdate>2023-10-10</gdate>
+      <type>industry</type>
+   </Grants>
+   <!--Link Entries-->
+   <Link rid="R1" gid="G2" />
+   <Link rid="R2" gid="G2" />
+   <Link rid="R3" gid="G3" />
+   <Link rid="R3" gid="G4" />
+   <Link rid="R2" gid="G5" />
+   <Link rid="R3" gid="G6" />
+   <Link rid="R1" gid="G6" />
+</grants>

@@ -1,0 +1,99 @@
+---
+title: "QueryDB Notebook"
+output: html_notebook
+---
+
+```{r}
+library(RSQLite)
+
+fpath = "/Users/dhanush/Northeastern/2023summer/CS5200/CS5200.QueryDB.balakrishna/"
+dbfile = "MediaDB.db"
+
+dbcon <- dbConnect(RSQLite::SQLite(), paste0(fpath,dbfile))
+```
+
+1st Question
+```{sql connection=dbcon}
+SELECT LastName, Title, HireDate 
+    FROM employees;
+```
+2nd Question
+```{sql connection=dbcon}
+SELECT DISTINCT a.Title, COUNT(t.GenreId) as Genres
+  FROM albums a JOIN tracks t
+                  ON a.AlbumId=t.AlbumId
+                JOIN genres g
+                  ON g.GenreId=t.GenreId
+  GROUP BY t.AlbumId;
+```
+3rd Question
+```{sql connection=dbcon}
+SELECT g.GenreId, COUNT(t.TrackId) as Tracks
+FROM genres g, tracks t
+WHERE g.GenreId=t.GenreId
+GROUP BY t.GenreId 
+HAVING COUNT(t.TrackId)>3
+ORDER BY Tracks DESC;
+```
+4th Question
+```{sql connection=dbcon}
+SELECT AVG(STRFTIME('%Y', 'now') - STRFTIME('%Y', BirthDate))
+  FROM employees;
+```
+5th Question
+```{sql connection=dbcon}
+SELECT State, COUNT(CustomerId) as UniquePurchases
+  FROM customers
+  WHERE Country='Brazil'
+  GROUP BY State
+  ORDER BY State ASC;
+```
+6th Question
+```{sql connection=dbcon}
+SELECT COUNT(DISTINCT c.SupportRepId)
+  FROM   customers c, employees e 
+  WHERE e.EmployeeId = c.SupportRepId;
+```
+7th Question
+```{sql connection=dbcon}
+SELECT COUNT(DISTINCT Title)
+  FROM albums
+  WHERE Title LIKE '%Rock%' AND Title NOT LIKE '%Hard%';
+  
+```
+8th Question
+```{sql connection=dbcon}
+SELECT mt.MediaTypeId, ROUND(SUM(t.milliseconds)/3.6e6, 1) AS Hours
+  FROM tracks t, media_types mt
+  WHERE t.MediaTypeId=mt.MediaTypeId
+  GROUP BY t.MediaTypeId;
+```
+9th Question
+```{sql connection=dbcon}
+SELECT g.GenreId, g.Name, COUNT(t.TrackId) as Tracks
+FROM genres g, tracks t
+WHERE g.GenreId=t.GenreId
+GROUP BY t.GenreId
+ORDER BY Tracks DESC
+LIMIT 1;
+```
+10th Question
+```{r}
+df <- dbGetQuery(dbcon,"SELECT g.GenreId, g.Name, t.UnitPrice FROM genres g, tracks t WHERE g.GenreId=t.GenreId")
+df2 <- dbGetQuery(dbcon,"SELECT t.UnitPrice FROM tracks t")
+print(df2)
+m=mean(df2$UnitPrice)
+sigma=sd(df2$UnitPrice)
+print(m)
+print(sigma)
+interval1=m-1.96*sigma
+interval2=m+1.96*sigma
+cat("The 95% CI for the mean unit price ranges from",interval1,"to",interval2)
+```
+
+
+
+
+
+
+

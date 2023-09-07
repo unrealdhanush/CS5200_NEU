@@ -1,0 +1,100 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(RSQLite)
+dbcon <- dbConnect(RSQLite::SQLite(), "books.sqlite")
+```
+
+```{sql connection=dbcon}
+CREATE TABLE books (
+  book_id TEXT PRIMARY KEY,
+  title TEXT, 
+  author TEXT,
+  genre TEXT,
+  price REAL,
+  publish_date TEXT,
+  description TEXT
+);
+
+CREATE TABLE authors (
+  author_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_name TEXT
+);
+
+CREATE TABLE genres (
+  genre_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  genre_name TEXT
+);
+
+CREATE TABLE book_authors (
+  book_id TEXT,
+  author_id INTEGER,
+  PRIMARY KEY(book_id, author_id),
+  FOREIGN KEY(book_id) REFERENCES books(book_id),
+  FOREIGN KEY(author_id) REFERENCES authors(author_id)
+);
+
+CREATE TABLE book_genres (
+  book_id TEXT,
+  genre_id INTEGER,
+  PRIMARY KEY(book_id, genre_id),
+  FOREIGN KEY(book_id) REFERENCES books(book_id),
+  FOREIGN KEY(genre_id) REFERENCES genres(genre_id)
+);
+```
+
+```{r}
+knitr::include_graphics("https://i.imgur.com/fltRtLE.jpg")
+```
+
+
+```{r}
+library(XML)
+fpath <- paste0(getwd(),"/Books-v4.xml")
+doc <- xmlParse("Books-v4.xml")
+
+books <- data.frame(
+  book_id = xpathSApply(doc, "//book/@id", xmlValue),
+  title = xpathSApply(doc, "//book/title", xmlValue),
+  author = xpathSApply(doc, "//book/author", xmlValue),
+  genre = xpathSApply(doc, "//book/genre", xmlValue),
+  price = as.numeric(xpathSApply(doc, "//book/price", xmlValue)),
+  publish_date = xpathSApply(doc, "//book/publish_date", xmlValue),
+  description = xpathSApply(doc, "//book/description", xmlValue)
+)
+
+authors <- data.frame(
+  author_name = unique(unlist(xpathSApply(doc, "//book/author", xmlValue)))
+)
+
+genres <- data.frame(
+  genre_name = unique(xpathSApply(doc, "//book/genre", xmlValue))  
+)
+
+book_authors <- data.frame(
+  book_id = xpathSApply(doc, "//book/@id", xmlValue),
+  author = xpathSApply(doc, "//book/author", xmlValue)
+)
+
+book_genres <- data.frame(
+  book_id = xpathSApply(doc, "//book/@id", xmlValue),
+  genre = xpathSApply(doc, "//book/genre", xmlValue)
+)
+```
+
+
+```{r}
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "books.sqlite")
+
+dbWriteTable(con, "books", books)
+dbWriteTable(con, "authors", authors) 
+dbWriteTable(con, "genres", genres)
+dbWriteTable(con, "book_authors", book_authors)
+dbWriteTable(con, "book_genres", book_genres)
+```
+

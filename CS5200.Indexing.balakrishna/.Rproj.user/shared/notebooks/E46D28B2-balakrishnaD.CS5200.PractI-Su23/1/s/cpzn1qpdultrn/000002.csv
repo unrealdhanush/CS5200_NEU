@@ -1,0 +1,18 @@
+"0","library(DBI)"
+"0","library(RMySQL)"
+"2","
+Attaching package: ‘RMySQL’
+
+"
+"2","The following object is masked from ‘package:RSQLite’:
+
+    isIdCurrent
+
+"
+"0","db_name_fh <- ""sql9632314"""
+"0","db_user_fh <- ""sql9632314"""
+"0","db_host_fh <- ""sql9.freemysqlhosting.net"""
+"0","db_pwd_fh <- ""UHtEQ9k3WN"""
+"0","db_port_fh <- 3306"
+"0",""
+"0","mydb <-  dbConnect(RMySQL::MySQL(), user = db_user_fh, password = db_pwd_fh, dbname = db_name_fh, host = db_host_fh, port = db_port_fh)"

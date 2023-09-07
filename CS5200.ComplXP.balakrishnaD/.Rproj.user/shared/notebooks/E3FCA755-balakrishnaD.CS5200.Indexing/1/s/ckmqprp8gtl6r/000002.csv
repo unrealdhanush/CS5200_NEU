@@ -1,0 +1,8 @@
+"0","```r
+# Get the title, category name and length of the film with the title \"ZORRO ARK\"
+query3 <- \"SELECT f.title AS title, c.name AS category, f.length AS length FROM film f JOIN film_category fc ON f.film_id=fc.film_id JOIN category c ON fc.category_id=c.category_id WHERE title = 'ZORRO ARK';\"
+results <- dbGetQuery(conn, query3)
+
+# Print the results
+print(results)
+```"

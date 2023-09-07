@@ -1,0 +1,1 @@
+"0","plot(rs$year, rs$total_strikes, type = ""l"", xlab = ""year"", ylab = ""Strikes"", main = ""Number of Birds Striking Aircraft by Year"")"

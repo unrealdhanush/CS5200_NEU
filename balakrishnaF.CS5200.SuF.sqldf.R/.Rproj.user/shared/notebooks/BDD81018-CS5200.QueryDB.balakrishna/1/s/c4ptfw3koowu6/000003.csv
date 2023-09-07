@@ -1,0 +1,19 @@
+"0","```r
+m=mean(df2$UnitPrice)
+sigma=sd(df2$UnitPrice)
+print(m)
+```"
+"1","[1] 1.050805
+"
+"0","```r
+print(sigma)
+```"
+"1","[1] 0.2390064
+"
+"0","```r
+interval1=m-1.96*sigma
+interval2=m+1.96*sigma
+cat(\"The 95% CI for the mean unit price ranges from\",interval1,\"to\",interval2)
+```"
+"1","The 95% CI for the mean unit price ranges from 0.5823524 to 1.519258
+"

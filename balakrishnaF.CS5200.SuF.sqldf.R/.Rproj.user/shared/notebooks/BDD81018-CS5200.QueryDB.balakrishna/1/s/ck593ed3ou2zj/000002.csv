@@ -1,0 +1,5 @@
+"0","```sql
+SELECT COUNT(DISTINCT c.SupportRepId)
+  FROM   customers c, employees e 
+  WHERE e.EmployeeId = c.SupportRepId;
+```"

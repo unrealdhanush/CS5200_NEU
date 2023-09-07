@@ -1,0 +1,8 @@
+"0","CREATE TABLE guests(
+       gid TEXT, 
+       name TEXT,
+       creditcard NUMBER,
+       expirationdate DATE,
+       CCV NUMBER,
+       PRIMARY KEY (gid)
+)"

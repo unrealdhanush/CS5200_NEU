@@ -1,0 +1,1 @@
+"0","plot(rs$month, rs$total_strikes, type = ""l"", xlab = ""month"", ylab = ""Strikes"", main = ""Number of Birds Striking Aircraft by Month"")"

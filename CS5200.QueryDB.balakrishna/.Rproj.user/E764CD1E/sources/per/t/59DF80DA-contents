@@ -1,0 +1,67 @@
+---
+title: "RDB Implementation"
+output: html_notebook
+---
+
+```{r}
+library(RSQLite)
+
+fpath = "/Users/dhanush/Northeastern/2023summer/CS5200/"
+dbfile = "commiteeDB.sqlite"
+
+dbcon <- dbConnect(RSQLite::SQLite(), paste0(fpath,dbfile))
+```
+
+
+```{sql connection=dbcon}
+CREATE TABLE visit (
+       vid NUMBER, 
+       numGuests INTEGER,
+       date DATE,
+       time TIME,
+       PRIMARY KEY (vid)
+)
+```
+
+```{sql connection=dbcon}
+CREATE TABLE guests(
+       gid TEXT, 
+       name TEXT,
+       creditcard NUMBER,
+       expirationdate DATE,
+       CCV NUMBER,
+       PRIMARY KEY (gid)
+)
+```
+
+```{sql connection=dbcon}
+CREATE TABLE visitorLog (
+       lid NUMBER, 
+       visitsid NUMBER, 
+       guestid TEXT,
+       PRIMARY KEY (lid),
+       FOREIGN KEY (visitsid) REFERENCES visit(vid),
+       FOREIGN KEY (guestid) REFERENCES guests(gid)
+)
+
+```
+
+```{sql connection=dbcon}
+INSERT INTO visit(vid, numGuests, date, time) VALUES
+(100, 4, 2000-10-06, 04);
+
+INSERT INTO guests(gid, name, creditcard, expirationdate, CCV) VALUES
+(20, Dhanush, 20001006, 2000-10-06, 577);
+
+```
+
+```{sql connection=dbcon}
+SELECT * FROM visit;
+```
+```{sql connection=dbcon}
+SELECT * FROM guests;
+```
+```{sql connection=dbcon}
+SELECT * FROM visitorLog;
+```
+

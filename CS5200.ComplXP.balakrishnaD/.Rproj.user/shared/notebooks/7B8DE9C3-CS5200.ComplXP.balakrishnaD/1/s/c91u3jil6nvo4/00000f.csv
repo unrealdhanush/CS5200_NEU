@@ -1,0 +1,11 @@
+"0","# Execute an XPath expression to get the total amount paid for freight for customer with ID ""GREAL"""
+"0","total_freight_for_GREAL <- xpathSApply(xml_doc, ""//Order[CustomerID='GREAL']/ShipInfo/Freight"", xmlValue)"
+"0","sum_total_freight_for_GREAL <- sum(as.numeric(total_freight_for_GREAL))"
+"0","cat(""Total amount paid for freight by customer with ID 'GREAL':"", sum_total_freight_for_GREAL, ""\n\n"")"
+"1","Total amount paid for freight by customer with ID 'GREAL':"
+"1"," "
+"1","1087.61"
+"1"," "
+"1","
+
+"

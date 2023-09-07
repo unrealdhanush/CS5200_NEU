@@ -1,0 +1,2 @@
+"0","SELECT AVG(STRFTIME('%Y', 'now') - STRFTIME('%Y', BirthDate))
+  FROM employees;"

@@ -1,0 +1,8 @@
+"0","```r
+# Re-run the query from step 3 now that you have an index
+query6 <- \"SELECT f.title AS title, c.name AS category, f.length AS length FROM film f JOIN film_category fc ON f.film_id=fc.film_id JOIN category c ON fc.category_id=c.category_id WHERE title = 'ZORRO ARK';\"
+results <- dbGetQuery(conn, query6)
+
+# Print the results
+print(results)
+```"

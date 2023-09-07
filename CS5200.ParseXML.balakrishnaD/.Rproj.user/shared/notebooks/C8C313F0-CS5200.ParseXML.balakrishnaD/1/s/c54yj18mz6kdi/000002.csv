@@ -1,0 +1,26 @@
+"0","  CREATE TABLE Genre (
+    GenreID INTEGER PRIMARY KEY,
+    GenreName TEXT
+  );
+  
+  CREATE TABLE Author (
+    AuthorID INTEGER PRIMARY KEY,
+    AuthorName TEXT
+  );
+  
+  CREATE TABLE Book (
+    BookID TEXT PRIMARY KEY,
+    Title TEXT,
+    GenreID INTEGER,
+    Price REAL,
+    PublishDate TEXT,
+    Description TEXT,
+    FOREIGN KEY (GenreID) REFERENCES Genre(GenreID)
+  );
+
+  CREATE TABLE BookAuthor (
+    BookID TEXT,
+    AuthorID INTEGER,
+    FOREIGN KEY (BookID) REFERENCES Book(BookID),
+    FOREIGN KEY (AuthorID) REFERENCES Author(AuthorID)
+  );"

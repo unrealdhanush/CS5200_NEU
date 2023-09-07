@@ -1,0 +1,36 @@
+"0","library(plotly)"
+"2","Loading required package: ggplot2
+"
+"2","Want to understand how all the pieces fit together? Read R for Data Science: https://r4ds.had.co.nz/
+"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"2","
+Attaching package: ‘plotly’
+
+"
+"2","The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+"
+"2","The following object is masked from ‘package:stats’:
+
+    filter
+
+"
+"2","The following object is masked from ‘package:graphics’:
+
+    layout
+
+"
+"0","fig = plot_ly(x = rs$month, y = rs$total_strikes, type=""scatter"", mode = ""heatmap"")"
+"0","fig"
+"2","Warning: Ignoring 1 observations"
+"2","Warning: Ignoring 1 observations"

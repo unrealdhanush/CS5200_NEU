@@ -1,0 +1,8 @@
+"0","```r
+# Get the query plan for the query
+query <- \"EXPLAIN QUERY PLAN SELECT f.title AS title, c.name AS category, f.length AS length FROM film f JOIN film_category fc ON f.film_id=fc.film_id JOIN category c ON fc.category_id=c.category_id WHERE title = 'ZORRO ARK';\"
+query_plan <- dbGetQuery(conn, query) 
+
+# Print the query plan
+print(query_plan)
+```"

@@ -1,0 +1,6 @@
+"0","```r
+rs <- dbGetQuery(mydb, \"select month(f.dates) as month, year(f.dates) as year, count(*) as total_strikes
+from strikes s left join flights f on s.fid = f.fid group by year(f.dates), month(f.dates)
+order by year(f.dates), month(f.dates);\")
+rs
+```"

@@ -1,0 +1,11 @@
+﻿rid,aircraft,airport,model,wildlife_struck,impact,flight_date,damage,airline,origin,flight_phase,remains_collected_flag,Remarks,wildlife_size,sky_conditions,species,pilot_warned_flag,altitude_ft,heavy_flag
+320701,Airplane,LAGUARDIA NY,B-737-400,9,Aborted Take-off,2010/12/01,No damage,LUFTHANSA,New York,Taxi,FALSE,,Medium,Overcast,Mallard,Y,10,Yes
+320702,Airplane,CHICAGO O' INTHARE INTL ARPT,A-320,7,Precautory Landing,2010/12/02,No damage,AIR NEW ZELAND,Illinois,Climb,FALSE,,Small,No Cloud,Rock pigeon,Y,"2,500",No
+321291,Airplane,ORLANDO INTL,FAIRCHILD SA227,10,Aborted Take-off,2010/12/03,Caused damage,AIR JAMAICA,Florida,Take-off run,FALSE,,Large,Some Cloud,Tundra swan,Y,15,Yes
+321909,Airplane,SAN FRANCISCO INTL ARPT,LOCKHEED P3,8,None,2010/12/04,No damage,AIR NEW ZELAND,California,Taxi,FALSE,,Medium,No Cloud,Unknown bird - medium,N,30,No
+323001,Airplane,LOS ANGELES INTL,DA-50 FALCON,1,Precautory Landing,2010/12/05,Caused damage,QANTAS,California,Take-off run,TRUE,,Large,Overcast,Wild turkey,Y,"4,000",No
+323002,Airplane,TETERBORO AIRPORT,BE-200 KING,6,Engine Shut Down,2010/12/06,Caused damage,AIR FRANCE,New Jersey,Descent,TRUE,,Large,Some Cloud,Snow goose,Y,5,Yes
+323003,Airplane,JOHN F KENNEDY INTL,ATR-72,4,Engine Shut Down,2010/12/07,No damage,SOUTH AFRICAN AIRWAYS,New York,Approach,FALSE,,Medium,No Cloud,Herring gull,N,50,No
+323004,Airplane,MIAMI INTL,B-737,2,Other,2010/12/08,Caused damage,AEROMEXICO,Florida,Descent,TRUE,,Medium,Overcast,American crow,Y,"2,200",Yes
+323005,Airplane,PUERTO VALLARTA,LEARJET-35,5,Other,2010/12/09,No damage,AEROLINEAS ARGENTINAS,N/A,Parked,FALSE,,Small,Some Cloud,Killdeer,N,0,Yes
+323006,Airplane,CHARLES DE GAULLE,A-330,227,None,2010/12/10,No damage,IBERIA,N/A,Parked,FALSE,,Small,No Cloud,European starling,N,0,No

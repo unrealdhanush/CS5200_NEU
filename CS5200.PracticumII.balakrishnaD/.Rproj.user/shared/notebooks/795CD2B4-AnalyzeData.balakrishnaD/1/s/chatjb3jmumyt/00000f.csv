@@ -1,0 +1,8 @@
+"0","total <- dbGetQuery(mysql_con, """
+"0","  SELECT "
+"0","    SUM(y2020_sold) AS y2020, "
+"0","    SUM(y2021_sold) AS y2021,"
+"0","    SUM(y2022_sold) AS y2022"
+"0","  FROM rep_facts"
+"0",""")"
+"0","print(total)"

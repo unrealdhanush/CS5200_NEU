@@ -1,0 +1,3 @@
+"0","```sql
+select airportState as States, count(*) as incidents from strikes left join flights on strikes.fid = flights.fid left join airports on flights.origin=airports.aid group by airportState order by incidents desc; 
+```"

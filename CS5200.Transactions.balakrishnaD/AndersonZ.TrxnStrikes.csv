@@ -1,0 +1,11 @@
+﻿rid,aircraft,airport,model,wildlife_struck,impact,flight_date,damage,airline,origin,flight_phase,remains_collected_flag,Remarks,wildlife_size,sky_conditions,species,pilot_warned_flag,altitude_ft,heavy_flag
+102934,Airplane,LAGUARDIA NY,B-737-400,23,Precautionary Landing,07/01/23,Caused damage,US AIRWAYS*,New York,Climb,TRUE,,Small,No Cloud,Unknown bird - medium,N,"1,500",Yes
+201947,Airplane,DALLAS/FORT WORTH INTL ARPT,MD-80,12,Aborted Take-off,07/02/23,No damage,AMERICAN AIRLINES,Texas,Take-off run,FALSE,,Small,Some Cloud,Rock pigeon,Y,0,No
+203817,Airplane,LAKEFRONT AIRPORT,C-500,3,None,07/03/23,No damage,SPECIAL AIRLINES,Louisiana,Climb,FALSE,,Large,No Cloud,European starling,N,50,No
+203841,Airplane,SEATTLE-TACOMA INTL,B-737-400,5,None,07/04/23,No damage,ALASKA AIRLINES,Washington,Climb,FALSE,,Small,Some Cloud,European starling,Y,200,Yes
+539205,Airplane,NORFOLK INTL,CL-RJ100/200,65,Precautionary Landing,07/05/23,Caused damage,NEW WORLD AIRLINES,Virginia,Climb,TRUE,,Small,No Cloud,European starling,N,50,No
+190382,Airplane,GUAYAQUIL/S BOLIVAR,A-300,39,Aborted Take-off,07/06/23,Caused damage,AMERICAN AIRLINES,N/A,Take-off run,TRUE,,Small,No Cloud,Unknown bird - small,N,0,No
+938571,Airplane,NEW CASTLE COUNTY,LEARJET-25,1,None,07/07/23,No damage,BUSINESS,Delaware,Climb,FALSE,,Large,No Cloud,European starling,N,150,No
+293841,Airplane,WASHINGTON DULLES INTL ARPT,A-320,17,Aborted Take-off,07/08/23,No damage,WONDERFUL AIRLINES,DC,Take-off run,FALSE,,Small,Some Cloud,European starling,Y,0,No
+693210,Airplane,ATLANTA INTL,DC-9-30,30,Aborted Take-off,07/09/23,Caused damage,AIRTRAN AIRWAYS,Georgia,Take-off run,TRUE,,Small,Some Cloud,Rock pigeon,N,0,No
+397211,Airplane,ORLANDO SANFORD INTL AIRPORT,A-330,26,Precautionary Landing,07/10/23,Caused damage,AWESOME AIRLINES,Florida,Climb,TRUE,,Small,Some Cloud,Unknown bird - small,N,500,No

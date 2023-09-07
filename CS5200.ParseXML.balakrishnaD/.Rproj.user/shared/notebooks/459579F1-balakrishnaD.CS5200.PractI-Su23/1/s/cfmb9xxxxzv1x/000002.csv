@@ -1,0 +1,7 @@
+"0","```r
+library(plotly)
+fig = plot_ly(x = rs$month, y = rs$total_strikes, type=\"scatter\", mode = \"heatmap\")
+fig
+plot(rs$year, rs$total_strikes, type = \"l\", xlab = \"year\", ylab = \"Strikes\", main = \"Number of Birds Striking Aircraft by Year\")
+plot(rs$month, rs$total_strikes, type = \"l\", xlab = \"month\", ylab = \"Strikes\", main = \"Number of Birds Striking Aircraft by Month\")
+```"

@@ -1,0 +1,3 @@
+"0","ALTER TABLE invoices 
+ADD COLUMN totalinv NUMERIC NOT NULL DEFAULT 0 CHECK(totalinv>=0);
+"

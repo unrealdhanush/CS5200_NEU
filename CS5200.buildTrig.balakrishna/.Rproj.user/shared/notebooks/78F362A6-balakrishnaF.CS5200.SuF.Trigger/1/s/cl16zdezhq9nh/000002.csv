@@ -1,0 +1,1 @@
+"0","INSERT INTO invoice_items (InvoiceId, TrackId, UnitPrice, Quantity) VALUES (414, 2581, 0.99, 1), (414, 2574, 0.99, 3);"

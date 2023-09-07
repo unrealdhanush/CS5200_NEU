@@ -1,0 +1,9 @@
+"0","```r
+# Get the query plan for the query
+query <- \"EXPLAIN QUERY PLAN SELECT l.name, COUNT(*) AS num_films FROM film f LEFT JOIN language l ON f.language_id=l.language_id GROUP BY f.language_id;\"
+
+query_plan <- dbGetQuery(conn, query)
+
+# Print the query plan
+print(query_plan)
+```"

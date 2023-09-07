@@ -1,0 +1,9 @@
+"0","```sql
+CREATE TABLE visit (
+       vid NUMBER, 
+       numGuests INTEGER,
+       date DATE,
+       time TIME,
+       PRIMARY KEY (vid)
+)
+```"

@@ -1,0 +1,4 @@
+"0","create table if not exists conditions(cid INTEGER,
+                        sky_condition TEXT,
+                        explanation TEXT,
+                        PRIMARY KEY (cid))"

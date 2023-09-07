@@ -1,0 +1,9 @@
+"0","create table if not exists strikes(sid INTEGER,
+                     fid INTEGER,
+                     numbirds INTEGER,
+                     impact TEXT,
+                     damage BIT,
+                     altitude INTEGER CHECK (altitude>=0),
+                     conditions INTEGER,
+                     FOREIGN KEY (fid) REFERENCES flights(fid),
+                     FOREIGN KEY (conditions) REFERENCES conditions(cid))"

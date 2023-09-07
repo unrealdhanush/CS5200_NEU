@@ -1,0 +1,7 @@
+"0","CREATE TRIGGER IF NOT EXISTS recalcTrigD
+AFTER DELETE ON invoice_items 
+FOR EACH ROW
+BEGIN
+UPDATE invoices SET totalinv=(SELECT SUM(UnitPrice*Quantity) FROM invoice_items WHERE InvoiceId = OLD.InvoiceId)
+WHERE InvoiceId=OLD.InvoiceId;
+END"

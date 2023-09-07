@@ -1,0 +1,1 @@
+"0","INSERT INTO invoices(InvoiceId, CustomerId, InvoiceDate, Total) VALUES (414, 24, ""2013-12-27"", 0.00);"

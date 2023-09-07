@@ -1,0 +1,8 @@
+"0","```sql
+SELECT g.GenreId, g.Name, COUNT(t.TrackId) as Tracks
+FROM genres g, tracks t
+WHERE g.GenreId=t.GenreId
+GROUP BY t.GenreId
+ORDER BY Tracks DESC
+LIMIT 1;
+```"

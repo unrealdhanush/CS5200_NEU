@@ -1,0 +1,7 @@
+"0","  SELECT Title, AuthorName
+  FROM Book
+  JOIN Genre USING (Genre)
+  JOIN BookAuthor USING (BookID)
+  JOIN Author USING (AuthorID)
+  WHERE Price < 0.8 * (SELECT AVG(Price) FROM Book) OR
+        Price > 1.2 * (SELECT AVG(Price) FROM Book)"

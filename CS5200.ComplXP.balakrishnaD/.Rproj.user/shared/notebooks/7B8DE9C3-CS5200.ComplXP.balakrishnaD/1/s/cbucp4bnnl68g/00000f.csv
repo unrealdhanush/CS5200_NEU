@@ -1,0 +1,17 @@
+"0","# Execute an XPath expression to get names of customers not living in ""MA"""
+"0","names_not_in_MA <- xpathSApply(xml_doc, ""//Customer[FullAddress/Region != 'MA']/CompanyName"", xmlValue)"
+"0","cat(""Names of customers that do not live in 'MA':\n"", names_not_in_MA, ""\n\n"")"
+"1","Names of customers that do not live in 'MA':
+"
+"1"," "
+"1","Great Lakes Food Market"
+"1"," "
+"1","Hungry Coyote Import Store"
+"1"," "
+"1","Lazy K Kountry Store"
+"1"," "
+"1","Let's Stop N Shop"
+"1"," "
+"1","
+
+"

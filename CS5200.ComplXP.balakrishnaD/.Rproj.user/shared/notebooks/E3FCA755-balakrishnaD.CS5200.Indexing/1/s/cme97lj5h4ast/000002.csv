@@ -1,0 +1,8 @@
+"0","```r
+# Get the query plan for the query
+query <- \"EXPLAIN QUERY PLAN SELECT f.title AS title, l.name AS language, f.length AS length FROM film f LEFT JOIN language l ON f.language_id=l.language_id WHERE title LIKE '%GOLD%';\"
+query_plan <- dbGetQuery(conn, query)
+
+# Print the query plan
+print(query_plan)
+```"

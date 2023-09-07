@@ -1,0 +1,162 @@
+---
+title: "Parse XML"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+## Question 1 
+
+![]("https://ibb.co/PcSXjmS")
+```{r}
+knitr::include_graphics("https://ibb.co/PcSXjmS")
+```
+
+## Question 2
+```{r}
+library(RSQLite)
+# Create a SQLite database
+con <- dbConnect(RSQLite::SQLite(), "books.db")
+```
+
+```{sql connection=con}
+  CREATE TABLE Genre (
+    GenreID INTEGER PRIMARY KEY,
+    GenreName TEXT
+  );
+```
+
+```{sql connection=con}
+  CREATE TABLE Author (
+    AuthorID INTEGER PRIMARY KEY,
+    AuthorName TEXT
+  );
+```
+
+```{sql connection=con}
+  CREATE TABLE Book (
+    BookID TEXT PRIMARY KEY,
+    Title TEXT,
+    GenreID INTEGER,
+    Price REAL,
+    PublishDate TEXT,
+    Description TEXT,
+    FOREIGN KEY (GenreID) REFERENCES Genre(GenreID)
+  );
+```
+
+```{sql connection=con}
+  CREATE TABLE BookAuthor (
+    BookID TEXT,
+    AuthorID INTEGER,
+    FOREIGN KEY (BookID) REFERENCES Book(BookID),
+    FOREIGN KEY (AuthorID) REFERENCES Author(AuthorID)
+  );
+```
+
+## Question 3
+```{r}
+library(xml2)
+library(dplyr)
+library(DBI)
+library(purrr)
+# Load XML data
+xml_data <- read_xml("Books-v4.xml")
+
+# Extract data from XML
+genres <- xml_data %>%
+  xml_find_all(".//genre") %>%
+  xml_text() %>%
+  unique() %>%
+  enframe(name = NULL, value = "Genre") %>%
+  mutate(GenreID = row_number())
+
+books <- xml_data %>%
+  xml_find_all(".//book") %>%
+  map_df(~list(
+    BookID = xml_attr(.x, "id"),
+    Title = xml_find_first(.x, ".//title") %>% xml_text(),
+    Genre = xml_find_first(.x, ".//genre") %>% xml_text(),
+    Price = xml_find_first(.x, ".//price") %>% xml_text() %>% as.numeric(),
+    PublishDate = xml_find_first(.x, ".//publish_date") %>% xml_text(),
+    Description = xml_find_first(.x, ".//description") %>% xml_text()
+  ))
+
+authors <- xml_data %>%
+  xml_find_all(".//book/author") %>%
+  xml_text() %>%
+  unique() %>%
+  enframe(name = NULL, value = "AuthorName") %>%
+  mutate(AuthorID = row_number())
+
+book_authors <- xml_data %>%
+  xml_find_all(".//book") %>%
+  map_df(~list(
+    BookID = xml_attr(.x, "id"),
+    AuthorName = xml_find_all(.x, ".//author") %>% xml_text()
+  )) %>%
+  left_join(authors, by = "AuthorName") %>%
+  select(-AuthorName)
+
+# Insert data into the database
+dbWriteTable(con, "Genre", genres, row.names = FALSE, overwrite = TRUE)
+dbWriteTable(con, "Book", books, row.names = FALSE, overwrite = TRUE)
+dbWriteTable(con, "Author", authors, row.names = FALSE, overwrite = TRUE)
+dbWriteTable(con, "BookAuthor", book_authors, row.names = FALSE, overwrite = TRUE)
+
+```
+
+```{sql connection=con}
+SELECT * FROM Genre;
+```
+
+```{sql connection=con}
+SELECT * FROM Book;
+```
+
+```{sql connection=con}
+SELECT * FROM Author;
+```
+
+```{sql connection=con}
+SELECT * FROM BookAuthor;
+```
+
+```{sql connection=con}
+  SELECT b.Genre, COUNT(*) as NumBooks
+  FROM Book b
+  JOIN Genre g ON b.Genre = g.Genre
+  GROUP BY b.Genre
+  HAVING COUNT(*) >= 3
+```
+
+```{sql connection=con}
+  SELECT MIN(SUBSTR(PublishDate, 1, 4)) as OldestYear
+  FROM Book
+```
+
+```{sql connection=con}
+  SELECT b.Genre, COUNT(*) as NumBooks, AVG(Price) as AvgPrice
+  FROM Book b
+  JOIN Genre g ON b.Genre = g.Genre
+  GROUP BY b.Genre
+```
+
+```{sql connection=con}
+  SELECT Title, COUNT(*) as NumAuthors
+  FROM BookAuthor
+  JOIN Book USING (BookID)
+  GROUP BY BookID, Title
+  HAVING COUNT(*) > 1
+  
+```
+
+```{sql connection=con}
+  SELECT Title, AuthorName
+  FROM Book
+  JOIN Genre USING (Genre)
+  JOIN BookAuthor USING (BookID)
+  JOIN Author USING (AuthorID)
+  WHERE Price < 0.8 * (SELECT AVG(Price) FROM Book) OR
+        Price > 1.2 * (SELECT AVG(Price) FROM Book)
+```

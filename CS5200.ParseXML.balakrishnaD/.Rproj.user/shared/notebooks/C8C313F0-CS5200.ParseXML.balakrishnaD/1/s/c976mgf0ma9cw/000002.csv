@@ -1,0 +1,6 @@
+"0","  SELECT Title, COUNT(*) as NumAuthors
+  FROM BookAuthor
+  JOIN Book USING (BookID)
+  GROUP BY BookID, Title
+  HAVING COUNT(*) > 1
+  "

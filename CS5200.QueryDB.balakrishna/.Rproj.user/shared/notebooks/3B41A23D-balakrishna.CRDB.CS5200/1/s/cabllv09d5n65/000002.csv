@@ -1,0 +1,8 @@
+"0","```r
+library(RSQLite)
+
+fpath = \"/Users/dhanush/Northeastern/2023summer/CS5200/\"
+dbfile = \"commiteeDB.sqlite\"
+
+dbcon <- dbConnect(RSQLite::SQLite(), paste0(fpath,dbfile))
+```"

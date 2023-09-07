@@ -1,0 +1,6 @@
+"0","```r
+library(XML)
+doc <- xmlParse(\"Books-v4.xml\")
+```"
+"1","Error: XML content does not seem to be XML: ''
+"

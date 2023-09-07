@@ -1,0 +1,2 @@
+"0","  SELECT MIN(SUBSTR(PublishDate, 1, 4)) as OldestYear
+  FROM Book"

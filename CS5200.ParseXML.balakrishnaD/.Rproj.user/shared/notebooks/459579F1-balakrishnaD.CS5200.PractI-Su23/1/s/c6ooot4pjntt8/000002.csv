@@ -1,0 +1,6 @@
+"0","```r
+dbWriteTable(mydb, \"airports\", df.airports, overwrite = F, append = T, row.names=F)
+dbWriteTable(mydb, \"flights\", df.flights, overwrite = F, append = T, row.names=F)
+dbWriteTable(mydb, \"conditions\", df.conditions, overwrite = F, append = T, row.names=F)
+dbWriteTable(mydb, \"strikes\", df.strikes, overwrite = F, append = T, row.names=F)
+```"

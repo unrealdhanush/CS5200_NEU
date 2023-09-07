@@ -1,0 +1,8 @@
+"0","```sql
+INSERT INTO visit(vid, numGuests, date, time) VALUES
+(100, 4, 2000-10-06, 04);
+
+INSERT INTO guests(gid, name, creditcard, expirationdate, CCV) VALUES
+(20, Dhanush, 20001006, 2000-10-06, 577);
+
+```"

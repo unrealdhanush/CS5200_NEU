@@ -1,0 +1,7 @@
+"0","```sql
+SELECT State, COUNT(CustomerId) as UniquePurchases
+  FROM customers
+  WHERE Country='Brazil'
+  GROUP BY State
+  ORDER BY State ASC;
+```"

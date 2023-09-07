@@ -1,0 +1,12 @@
+"0","```sql
+create table if not exists flights(
+                  fid INTEGER NOT NULL, 
+                  dates DATE, 
+                  origin INTEGER, 
+                  airline TEXT, 
+                  aircraft TEXT, 
+                  altitude NUMERIC unsigned CHECK (altitude>0), 
+                  heavy BIT, 
+                  PRIMARY KEY(fid),
+                  FOREIGN KEY(origin) REFERENCES airports(aid))
+```"

@@ -1,0 +1,52 @@
+﻿Practicum II Rubric & Self-Evaluation,,,,,Name: ,Dhanush Balakrishna
+,,,,,Term: ,Summer Full 2023
+,,,,98,Section: ,
+,105,,,,,
+1 / Project Setup,Exemplary,Good,Poor,Points,Code Chunk/Lines,Justification/Explanation of Approach
+"all code within R Project, scripts and notebooks properly named",0,0,0,0,N/A,All code is named and works
+,,,,,,
+2 / Build DTD,Yes,No,Not Impl,Points,Code Chunk/Lines,Justification/Explanation of Approach
+DTD is correct for provided XML (if required),3,1,0,0,N/A,No DTD used
+DTD is external and properly referenced by XML (if required),2,0,0,0,N/A,No DTD used
+,,,,,,
+3 / Create Transactional Database,Exemplary,Good,Poor,Points,Code Chunk/Lines,Justification/Explanation of Approach
+normalized schema contains required tables,4,2,0,4,,"Schema is normalized, with resolved relationships betweeen tables"
+"tables in SQLite database have proper PKs, FKs, and constraints",1,0,0,1,,Proper FK PK relations are defined
+lookup tables are added as necessary,2,1,0,2,,Database is Transactional
+schema is realized in SQLite database,8,4,0,8,,SQLite is used to realize the schema
+,,,,,,
+4 / Load XML,URL,Local,Not Impl,Points,Code Chunk/Lines,Justification/Explanation of Approach
+XML loads correctly (with validation if DTD required),5,3,0,3,,XML Files were downloaded as instructed and are loaded locally 
+,,,,,,
+"5 / Extract, Transform, Load",Exemplary,Good,Poor,Points,Code Chunk/Lines,Justification/Explanation of Approach
+data is extracted from XML and loaded into proper tables,25,15,0,25,,Data is extracted from XML and loaded into proper tables respectively
+code runs reasonably fast (less than 45 minutes),5,3,0,5,N/A,Code runs faster
+,,,,,,
+6 / MySQL Database,Exemplary,Good,Poor,Points,Code Chunk/Lines,Justification/Explanation of Approach
+R script connects to MySQL database,5,0,0,5,,Connection is established 
+,,,,,,
+7 / Star Schema,Exemplary,Good,Poor,Points,Code Chunk/Lines,Justification/Explanation of Approach
+fact tables with correctly loaded facts,15,7,1,15,,Fact Labels are properly loaded with correct and relevant facts
+fact tables supports required analytical queries,5,3,0,5,,All analytical queries are backed by fact tables
+data loads reasonably fast from SQLite database,3,1,0,3,N/A,Data loads exceptionally fast as R is used to load data from SQLite to MySQL
+,,,,,,
+8 / Data Exploration & Reporting,Exemplary,Good,Poor,Points,Code Chunk/Lines,Justification/Explanation of Approach
+"report has title, date, and headings with sample ""writing""",3,2,1,3,N/A,Report has all the mentioned specifications 
+analytical query 1 is well supported and correct,6,3,1,6,Analytical Query I,Analytical Query I is well supported and correct
+analytical query 2 is well supported and correct,6,3,1,6,Analytical Query II,Analytical Query II is well supported and correct
+,,,,,,
+9 / Quality & Professionalism,Exemplary,Good,Acceptable,Points,,
+"all code chunks (SQL, R) have labels; functions are used",3,1,0,3,N/A,"All code chunks in R Notebook are named, and rest of the code in R Scripts are named using comments"
+code exhibits readable structure and is well commented,3,1,0,3,N/A,Code has readable structure and and is well commented
+rubric file follow name pattern,1,0,0,1,N/A,The name pattern is followed according to instructions
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,

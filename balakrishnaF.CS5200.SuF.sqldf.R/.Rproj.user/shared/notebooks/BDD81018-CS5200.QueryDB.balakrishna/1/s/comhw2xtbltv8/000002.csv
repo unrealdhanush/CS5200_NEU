@@ -1,0 +1,6 @@
+"0","```sql
+SELECT mt.MediaTypeId, ROUND(SUM(t.milliseconds)/3.6e6, 1) AS Hours
+  FROM tracks t, media_types mt
+  WHERE t.MediaTypeId=mt.MediaTypeId
+  GROUP BY t.MediaTypeId;
+```"

@@ -1,0 +1,4 @@
+"0","```r
+
+query_3_time <- system.time(dbGetQuery(conn, query3))
+```"

@@ -1,0 +1,10 @@
+"0","```r
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), \"books.sqlite\")
+
+dbWriteTable(con, \"books\", books)
+dbWriteTable(con, \"authors\", authors) 
+dbWriteTable(con, \"genres\", genres)
+dbWriteTable(con, \"book_authors\", book_authors)
+dbWriteTable(con, \"book_genres\", book_genres)
+```"

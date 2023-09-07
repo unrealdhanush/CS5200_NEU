@@ -1,0 +1,16 @@
+"0","```r
+# Measure the execution time of the queries in steps 3 and 6
+query_6_time <- system.time(dbGetQuery(conn, query6))
+
+# Print the execution times
+print(query_3_time)
+```"
+"1","   user  system elapsed 
+  0.001   0.000   0.002 
+"
+"0","```r
+print(query_6_time)
+```"
+"1","   user  system elapsed 
+  0.001   0.000   0.000 
+"

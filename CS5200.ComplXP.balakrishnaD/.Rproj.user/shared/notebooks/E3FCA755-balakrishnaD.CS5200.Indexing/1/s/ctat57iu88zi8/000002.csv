@@ -1,0 +1,8 @@
+"0","```r
+# Get the title, language and length of all films with the word \"GOLD\" with any capitalization in its name
+query <- \"SELECT f.title AS title, l.name AS language, f.length AS length FROM film f LEFT JOIN language l ON f.language_id=l.language_id WHERE title LIKE '%GOLD%';\"
+results <- dbGetQuery(conn, query)
+
+# Print the results
+print(results)
+```"

@@ -1,0 +1,4 @@
+"0","  SELECT b.Genre, COUNT(*) as NumBooks, AVG(Price) as AvgPrice
+  FROM Book b
+  JOIN Genre g ON b.Genre = g.Genre
+  GROUP BY b.Genre"

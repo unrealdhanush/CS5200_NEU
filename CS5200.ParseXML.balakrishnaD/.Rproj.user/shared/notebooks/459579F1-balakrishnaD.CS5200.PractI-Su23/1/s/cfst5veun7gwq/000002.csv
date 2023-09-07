@@ -1,0 +1,31 @@
+"0","```r
+bds.raw = read.csv(\"BirdStrikesData-V2.csv\", header=T)
+bds.raw$heavy_flag <- ifelse(bds.raw$heavy_flag == \"Yes\", 1, 0)
+bds.raw$flight_date <- as.Date(bds.raw$flight_date, format = \"%m/%d/%Y\")
+
+n.airports <- nrow(bds.raw)
+df.airports <- data.frame(aid = 100 + match(bds.raw$origin, unique(bds.raw$origin)),
+                          airportState = bds.raw$origin)
+
+n.flights <- nrow(bds.raw)
+df.flights <- data.frame(fid = 100 + seq(1,n.flights),
+                         dates = bds.raw$flight_date,
+                         airline = bds.raw$airline,
+                         origin = df.airports$aid,
+                         aircraft = bds.raw$aircraft,
+                         altitude = bds.raw$altitude_ft,
+                         heavy = bds.raw$heavy_flag)
+
+n.conditions <- nrow(bds.raw)
+df.conditions <- data.frame(cid = 100 + match(bds.raw$sky_conditions,unique(bds.raw$sky_conditions)),
+                            sky_condition = bds.raw$sky_conditions)
+
+n.strikes <- nrow(bds.raw)
+df.strikes <- data.frame(sid = 10 + seq(1,n.strikes),
+                         fid = df.flights$fid,
+                         numbirds = bds.raw$wildlife_struck,
+                         damage = ifelse(bds.raw$damage==\"Caused damage\", TRUE, FALSE),
+                         altitude = bds.raw$altitude_ft,
+                         conditions = df.conditions$cid)
+
+```"

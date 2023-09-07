@@ -1,0 +1,6 @@
+"0","library(RSQLite)"
+"0",""
+"0","fpath = ""/Users/dhanush/Northeastern/2023summer/CS5200/CS5200.QueryDB.balakrishna/"""
+"0","dbfile = ""MediaDB.db"""
+"0",""
+"0","dbcon <- dbConnect(RSQLite::SQLite(), paste0(fpath,dbfile))"

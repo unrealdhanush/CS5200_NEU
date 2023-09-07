@@ -1,0 +1,6 @@
+"0","```sql
+SELECT COUNT(DISTINCT Title)
+  FROM albums
+  WHERE Title LIKE '%Rock%' AND Title NOT LIKE '%Hard%';
+  
+```"

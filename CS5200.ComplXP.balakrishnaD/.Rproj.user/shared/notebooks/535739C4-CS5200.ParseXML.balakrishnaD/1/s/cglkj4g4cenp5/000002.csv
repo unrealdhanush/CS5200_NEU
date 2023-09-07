@@ -1,0 +1,37 @@
+"0","```sql
+CREATE TABLE books (
+  book_id TEXT PRIMARY KEY,
+  title TEXT, 
+  author TEXT,
+  genre TEXT,
+  price REAL,
+  publish_date TEXT,
+  description TEXT
+);
+
+CREATE TABLE authors (
+  author_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_name TEXT
+);
+
+CREATE TABLE genres (
+  genre_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  genre_name TEXT
+);
+
+CREATE TABLE book_authors (
+  book_id TEXT,
+  author_id INTEGER,
+  PRIMARY KEY(book_id, author_id),
+  FOREIGN KEY(book_id) REFERENCES books(book_id),
+  FOREIGN KEY(author_id) REFERENCES authors(author_id)
+);
+
+CREATE TABLE book_genres (
+  book_id TEXT,
+  genre_id INTEGER,
+  PRIMARY KEY(book_id, genre_id),
+  FOREIGN KEY(book_id) REFERENCES books(book_id),
+  FOREIGN KEY(genre_id) REFERENCES genres(genre_id)
+);
+```"

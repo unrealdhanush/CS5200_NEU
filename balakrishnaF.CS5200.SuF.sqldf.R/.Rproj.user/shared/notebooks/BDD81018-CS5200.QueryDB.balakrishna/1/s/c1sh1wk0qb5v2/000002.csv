@@ -1,0 +1,8 @@
+"0","```sql
+SELECT DISTINCT a.Title, COUNT(t.GenreId) as Genres
+  FROM albums a JOIN tracks t
+                  ON a.AlbumId=t.AlbumId
+                JOIN genres g
+                  ON g.GenreId=t.GenreId
+  GROUP BY t.AlbumId;
+```"

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<salesteam>
+  <rep rID="r100">
+    <firstName>Helmut</firstName>
+    <lastName>Schwab</lastName>
+    <territory>EMEA</territory>
+  </rep>
+  <rep rID="r887">
+    <firstName>Walison</firstName>
+    <lastName>da Silva</lastName>
+    <territory>South America</territory>
+  </rep>
+  <rep rID="r332">
+    <firstName>Lynette</firstName>
+    <lastName>McRowe</lastName>
+    <territory>East</territory>
+  </rep>
+  <rep rID="r203">
+    <firstName>Aneeta</firstName>
+    <lastName>Kappoorthy</lastName>
+    <territory>West</territory>
+  </rep>
+  <rep rID="r221">
+    <firstName>Veronika</firstName>
+    <lastName>Sixt</lastName>
+    <territory>EMEA</territory>
+  </rep>
+  <rep rID="r655">
+    <firstName>Ralph</firstName>
+    <lastName>Klinger</lastName>
+    <territory>West</territory>
+  </rep>
+  <rep rID="r119">
+    <firstName>Prasad</firstName>
+    <lastName>Patel</lastName>
+    <territory>EMEA</territory>
+  </rep>
+  <rep rID="r988">
+    <firstName>Xi</firstName>
+    <lastName>Zheng</lastName>
+    <territory>EMEA</territory>
+  </rep>
+</salesteam>

@@ -1,0 +1,9 @@
+"0","CREATE TABLE visitorLog (
+       lid NUMBER, 
+       visitsid NUMBER, 
+       guestid TEXT,
+       PRIMARY KEY (lid),
+       FOREIGN KEY (visitsid) REFERENCES visit(vid),
+       FOREIGN KEY (guestid) REFERENCES guests(gid)
+)
+"

@@ -1,0 +1,20 @@
+"0","```r
+for (r in 1:n.flights) {
+  f <- df.airports$aid[which(df.airports$airportState == bds.raw$origin[r])]
+  df.flights$origin[r] <- f
+}
+
+for (r in 1:n.strikes) {
+  s <- df.conditions$cid[which(df.conditions$sky_condition==bds.raw$sky_conditions[r])]
+  df.strikes$conditions[r] <- s
+}
+
+for (r in 2:n.strikes) {
+  p <- df.flights$fid[which(df.flights$dates==bds.raw$flight_date[r] & 
+                            df.flights$origin==bds.raw$origin[r] &
+                            df.flights$airline==bds.raw$airline[r] &
+                            df.flights$aircraft==bds.raw$aircraft[r] &
+                            df.flights$altitude==bds.raw$altitude_ft[r])]
+  df.strikes$fid[r] <- p
+}
+```"

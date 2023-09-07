@@ -1,0 +1,4 @@
+"0","```sql
+SELECT AVG(STRFTIME('%Y', 'now') - STRFTIME('%Y', BirthDate))
+  FROM employees;
+```"

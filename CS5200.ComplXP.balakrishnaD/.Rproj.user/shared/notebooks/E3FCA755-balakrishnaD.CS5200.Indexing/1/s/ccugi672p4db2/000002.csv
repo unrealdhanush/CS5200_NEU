@@ -1,0 +1,18 @@
+"0","```r
+# Get a list of all indexes
+
+# Get the name of the table
+table_name <- \"film\"
+
+dbExecute(conn, \"DROP INDEX TitleIndex;\")
+```"
+"1","[1] 0
+"
+"0","```r
+# Get the number of films per language
+query <- \"SELECT l.name, COUNT(*) AS num_films FROM film f LEFT JOIN language l ON f.language_id=l.language_id GROUP BY f.language_id;\"
+results <- dbGetQuery(conn, query)
+
+# Print the results
+print(results)
+```"

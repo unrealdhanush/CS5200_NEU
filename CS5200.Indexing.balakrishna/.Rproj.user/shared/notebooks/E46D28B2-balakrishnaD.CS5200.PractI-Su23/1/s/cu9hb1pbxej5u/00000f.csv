@@ -1,0 +1,11 @@
+"0","rs <- dbGetQuery(mydb, ""select month(f.dates) as month, year(f.dates) as year, count(*) as total_strikes"
+"2","Warning message:
+"
+"2","In .local(conn, statement, ...) :"
+"2","
+ "
+"2"," Decimal MySQL column 5 imported as numeric
+"
+"0","from strikes s left join flights f on s.fid = f.fid group by year(f.dates), month(f.dates)"
+"0","order by year(f.dates), month(f.dates);"")"
+"0","rs"

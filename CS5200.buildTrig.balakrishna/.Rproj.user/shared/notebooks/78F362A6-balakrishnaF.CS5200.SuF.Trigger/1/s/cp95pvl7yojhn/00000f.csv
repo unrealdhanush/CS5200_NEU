@@ -1,0 +1,5 @@
+"0","library(RSQLite)"
+"0",""
+"0","dbfile = ""/Users/dhanush/Northeastern/2023summer/CS5200/CS5200.buildTrig.balakrishna/MediaDB.db"""
+"0",""
+"0","dbcon <- dbConnect(RSQLite::SQLite(), dbfile)"

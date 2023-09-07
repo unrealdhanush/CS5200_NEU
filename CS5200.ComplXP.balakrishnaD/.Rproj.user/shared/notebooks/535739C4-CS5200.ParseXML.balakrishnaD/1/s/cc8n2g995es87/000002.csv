@@ -1,0 +1,4 @@
+"0","```r
+library(RSQLite)
+dbcon <- dbConnect(RSQLite::SQLite(), \"books.sqlite\")
+```"

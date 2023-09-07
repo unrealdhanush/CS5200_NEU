@@ -1,0 +1,3 @@
+"0","library(RSQLite)"
+"0","# Create a SQLite database"
+"0","con <- dbConnect(RSQLite::SQLite(), ""books.db"")"

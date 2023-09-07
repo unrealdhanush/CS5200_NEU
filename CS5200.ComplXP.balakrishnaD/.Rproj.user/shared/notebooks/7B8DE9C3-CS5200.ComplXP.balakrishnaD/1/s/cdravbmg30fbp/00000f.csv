@@ -1,0 +1,2 @@
+"0","# Load the XML document with DTD validation"
+"0","xml_doc <- xmlParse(file = ""CustomersAndOrders.xml"", isURL = FALSE, validate = TRUE)"

@@ -1,0 +1,7 @@
+"0","CREATE TRIGGER IF NOT EXISTS calcTrigger
+AFTER INSERT ON invoices
+FOR EACH ROW
+BEGIN
+UPDATE invoices SET totalinv=(SELECT SUM(UnitPrice*Quantity) FROM invoice_items WHERE InvoiceId = NEW.InvoiceId)
+WHERE InvoiceId=NEW.InvoiceId;
+END"

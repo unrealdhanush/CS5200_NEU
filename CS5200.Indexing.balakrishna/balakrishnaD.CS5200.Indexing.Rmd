@@ -1,0 +1,175 @@
+---
+title: "Assignment/Explore Query Planning and Indexing"
+author: Balakrishna,D
+date: Summer Full 2023
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+## Establishing DB Connection
+
+```{r Connection Establishment}
+library(DBI)
+library(RSQLite)
+
+# Connect to the SQLite database
+conn <- dbConnect(RSQLite::SQLite(), "sakila.db")
+```
+
+## Question 1
+
+```{r Question 1}
+# Drop user-defined Indexes
+dbExecute(conn, "DROP INDEX TitleIndex;")
+
+# Get the number of films per language
+query <- "SELECT l.name, COUNT(*) AS num_films FROM film f LEFT JOIN language l ON
+f.language_id=l.language_id GROUP BY f.language_id;"
+results <- dbGetQuery(conn, query)
+
+# Print the results
+print(results)
+```
+
+## Question 2
+
+```{r Question 2}
+
+# Get the query plan for the query
+query <- "EXPLAIN QUERY PLAN SELECT l.name, COUNT(*) AS num_films 
+          FROM film f LEFT JOIN language l ON f.language_id=l.language_id 
+          GROUP BY f.language_id;"
+
+query_plan <- dbGetQuery(conn, query)
+
+# Print the query plan
+print(query_plan)
+```
+
+## Question 3
+
+The following SQL query will return the title, category name and length of the film with the title "ZORRO ARK":
+
+```{r Question 3}
+
+# Get the title, category name and length of the film with the title "ZORRO ARK"
+query3 <- "SELECT f.title AS title, c.name AS category, f.length AS length 
+          FROM film f JOIN film_category fc ON f.film_id=fc.film_id JOIN 
+          category c ON fc.category_id=c.category_id WHERE title = 'ZORRO ARK';"
+results <- dbGetQuery(conn, query3)
+
+# Get the time taken for execution
+query_3_time <- system.time(dbGetQuery(conn, query3))
+
+# Print the results
+print(results)
+
+
+```
+
+## Question 4
+
+The query plan for the query in step 3 is as follows:
+
+```{r Question 4}
+
+# Get the query plan for the query
+query <- "EXPLAIN QUERY PLAN SELECT f.title AS title, c.name AS category, 
+          f.length AS length FROM film f JOIN film_category fc 
+          ON f.film_id=fc.film_id JOIN category c ON 
+          fc.category_id=c.category_id WHERE title = 'ZORRO ARK';"
+query_plan <- dbGetQuery(conn, query) 
+
+# Print the query plan
+print(query_plan)
+```
+
+## Question 5
+
+The following SQL statement will create a user-defined index called "TitleIndex" on the column TITLE in the table FILM:
+
+```{r Question 5}
+
+# Create a user-defined index called "TitleIndex" on the column `TITLE` 
+# in the table `FILM`
+
+query <- "CREATE INDEX TitleIndex ON film (title);"
+dbExecute(conn, query)
+```
+
+## Question 6
+
+```{r Question 6}
+# Re-run the query from step 3 now that you have an index
+
+query6 <- "SELECT f.title AS title, c.name AS category, f.length AS length 
+            FROM film f JOIN film_category fc ON f.film_id=fc.film_id 
+            JOIN category c ON fc.category_id=c.category_id 
+            WHERE title = 'ZORRO ARK';"
+results <- dbGetQuery(conn, query6)
+
+# Get the time taken for execution
+query_6_time <- system.time(dbGetQuery(conn, query6))
+
+# Print the results
+print(results)
+
+query <- "EXPLAIN QUERY PLAN SELECT f.title AS title, c.name AS category, 
+          f.length AS length FROM film f JOIN film_category fc 
+          ON f.film_id=fc.film_id JOIN category c 
+          ON fc.category_id=c.category_id 
+          WHERE title = 'ZORRO ARK';"
+query_plan <- dbGetQuery(conn, query) 
+
+# Print the query plan
+print(query_plan)
+```
+
+## Question 7
+
+The query plans for both query(4) and query(6) are slightly different. The difference is notably scene in the detail column of the plans. In query(4), the table was searched using the primary key, whereas after creating the index, we can see in the query plan of query(6) that the table is searched using the index we defined.
+
+## Question 8
+
+Execution times for both query(3) and query(6):
+
+```{r Question 8}
+# Print the execution times
+print("Query 3: ")
+print(query_3_time)
+print("Query 6: ")
+print(query_6_time)
+```
+
+Here we can clearly see that indexing improves execution times for the same results which are obtained from the same queries.The elapsed time has clearly decreased.
+
+## Question 9
+
+```{r Question 9}
+# Get the title, language and length of all films with the word "GOLD" with any 
+# capitalization in its name
+
+query <- "SELECT f.title AS title, l.name AS language, f.length AS length 
+          FROM film f LEFT JOIN language l ON f.language_id=l.language_id 
+          WHERE title LIKE '%GOLD%';"
+results <- dbGetQuery(conn, query)
+
+# Print the results
+print(results)
+```
+
+## Question 10
+
+Here we get the query plan for query(9):
+
+```{r Question 10}
+# Get the query plan for the query
+query <- "EXPLAIN QUERY PLAN SELECT f.title AS title, l.name AS language, 
+          f.length AS length FROM film f LEFT JOIN language l 
+          ON f.language_id=l.language_id WHERE title LIKE '%GOLD%';"
+query_plan <- dbGetQuery(conn, query)
+
+# Print the query plan
+print(query_plan)
+```

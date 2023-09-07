@@ -1,0 +1,12 @@
+"0","```r
+library(DBI)
+library(RMySQL)
+
+db_name_fh <- \"sql9629190\"
+db_user_fh <- \"sql9629190\"
+db_host_fh <- \"sql9.freemysqlhosting.net\"
+db_pwd_fh <- \"1JaewqfKIc\"
+db_port_fh <- 3306
+
+mydb <-  dbConnect(RMySQL::MySQL(), user = db_user_fh, password = db_pwd_fh, dbname = db_name_fh, host = db_host_fh, port = db_port_fh)
+```"
